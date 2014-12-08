@@ -1,0 +1,12 @@
+bibentry(bibtype="Article",
+         title="Temporary title",
+         author=c(person("One", "Author", role=c("aut", "cre"), email="one.author@tmp.com"),
+                  person("Two", "Author", role=c("aut"), email="two.author@tmp.com")),
+         journal="Unknown journal",
+         number="1",
+         volume="1",
+         pages="1-10",
+         year="2014",
+         doi="000",
+         header="To cite kpax2 package in publications use:"
+        )
