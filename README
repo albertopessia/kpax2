@@ -1,0 +1,111 @@
+K-Pax2 - Bayesian Cluster Analysis of Categorical Data
+======================================================
+
+About
+-----
+
+K-Pax2 is a R package, written with the purpose of clustering (big) datasets
+of categorical statistical variables. Main application of K-Pax2 is with
+genetic datasets, such as dna/protein multiple sequence alignments. Being a
+general method, it can be easily applied to any kind of categorical dataset.
+K-Pax2 output consists of a classification of both the rows (statistical units)
+and columns (statistical variables) of the provided data matrix.
+
+Reference
+---------
+
+To know more about the method and how to properly setup the parameters, please
+read the following paper:
+"Article yet to be published"
+
+Downloading
+-----------
+
+You can find the latest version of K-Pax2 at:
+http://www.helsinki.fi/bsg/software/kpax2/
+
+Installation
+------------
+
+Download kpax2_x.x.x.zip file and extract its content into a folder of your
+choice.
+
+a) Preferred (easy) approach
+Run R and type the following command:
+
+install.packages("path_to_package_file.tar.gz", repos=NULL, type="source")
+
+where "path_to_package_file.tar.gz" is the complete path to the package file,
+contained in the folder you have chosen earlier.
+
+If R is run with administrative privileges, the previous command will install
+the library to the default system library, making it available to every other
+user on the same machine.
+
+You can now load the package from within R by issuing the command:
+
+library(kpax2)
+
+Windows users: within R, file paths should be written using the slash '/'
+               character instead of the usual backslash '\' character. If
+               you want to use the backslash, then you have to escape it
+               first (i.e. use '\\'). Examples of valid file paths:
+
+               "C:/Users/Current_User/Downloads/kpax2/kpax2_x.x.x.tar.gz"
+               "C:\\Users\\Current_User\\Downloads\\kpax2\\kpax2_x.x.x.tar.gz"
+
+b) Advanced approach
+If you want to make K-Pax2 available to everybody, then you will need to
+install it to the system R library folder. Its path depend on the system we are
+running R on, so please check where it is. It is actually possible to install
+the package wherever you want. From now on, we will refer to its path as LIB.
+
+From the command line, run (you will probably need root privileges):
+
+R CMD INSTALL --library=LIB path_to_package_file.tar.gz
+
+where path_to_package_file.tar.gz is the complete path to the package file,
+contained in the folder you have chosen earlier.
+
+If it fails to find command R, then it means that it is not in the system path.
+In this case, you will need to cd to its directory first:
+
+cd path_to_R_binary_folder
+R CMD INSTALL --library=LIB path_to_package_file.tar.gz
+
+On Windows, it would look something like this (note in this case the use of the
+backslash character):
+
+cd "C:\Program Files\R\R-x.x.x\bin"
+R CMD INSTALL --library="C:\Program Files\R\R-x.x.x\library" "C:\Users\Current_User\Downloads\kpax2\kpax2_x.x.x.tar.gz"
+
+You can now load the package from within R by issuing the command:
+
+library(kpax2)
+
+If you installed the package into a non-standard folder, use:
+
+library(kpax2, lib.loc=LIB)
+
+Usage
+-----
+
+For a tutorial on how to properly use this package, follow the instructions
+written in the file 'kpax2_tutorial.R', contained in the folder
+'kpax2_tutorial'.
+
+-------------------------------------------------------------------------------
+Copyright (c) 2014 Alberto Pessia <alberto.pessia@gmail.com>
+
+K-Pax2 is free software: you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later
+version.
+
+K-Pax2 is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+details.
+
+You should have received a copy of the GNU General Public License along with
+K-Pax2. If not, see <http://www.gnu.org/licenses/>.
