@@ -214,3 +214,10 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
+
+################################
+## Development files and folders
+################################
+
+kpax2.Rcheck/
+/*.tar.gz
