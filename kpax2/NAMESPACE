@@ -1,1 +1,4 @@
-export(GetMaxLogPP, InitHyperParameters, Kpax2, LoadData, SaveResults, SimulateDataset, SaveSimulatedDataset)
+importFrom(cluster, pam)
+
+export(FindInitialPartition, GetMaxLogPP, InitHyperParameters, Kpax2, LoadData,
+       SaveResults, SimulateDataset, SaveSimulatedDataset)

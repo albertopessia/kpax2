@@ -111,3 +111,106 @@ ComputeCounts <- function(d, partition) {
 
     return(vapply(clust, FUN=f, FUN.VALUE=integer(length=m), USE.NAMES=FALSE))
 }
+
+###############################################################################
+#
+# FindInitialPartition
+#
+# Description:
+#
+# Use pam (Partitioning Around Medoids) to initialize the partition
+#
+# Arguments
+#
+#          d: n-by-m logical data matrix
+#     g.prob: vector of length 3 with prior probabilities of "properties"
+#                 g.prob[1]: probability of an uninformative attribute
+#                 g.prob[2]: probability of an informative attribute, but not
+#                            characteristic for any cluster
+#                 g.prob[3]: probability of an informative attribute,
+#                            characteristic for just one cluster
+#  hyper.par: m-by-4-by-2 double array. hyper.par[, , 1] should contain the
+#             Beta distribution alpha parameters while hyper.par[, , 2] should
+#             contain the Beta distribution beta parameters. The 4 columns of
+#             each matrix correspond to the 4 properties. Use the function
+#             'InitHyperParameters' to obtain an 'hyper.par' variable that
+#             should work for most applications
+#          D: distance matrix as an object of class "dist". If NULL
+#             (the default), it will be set to the output of a call to "dist"
+#             function with "binary" method
+#      k.set: vector of integers representing the possible number of clusters.
+#             If NULL (the default), it will be initialized based on a
+#             dendrogram (built from D)
+#    verbose: logical. Should status messages be printed?
+#
+# Value:
+#
+# Integer vector with a good initial partition
+#
+###############################################################################
+FindInitialPartition <- function(d, g.prob, hyper.par, D=NULL, k.set=NULL,
+                                 verbose=FALSE) {
+  n <- nrow(d)
+
+  if (is.null(D)) {
+    if (verbose) {
+      cat("Computing Hamming distance matrix... ")
+    }
+
+    # compute a basic distance matrix
+    D <- dist(x=d, method="binary")
+
+    if (verbose) {
+      cat("done.\n")
+    }
+  }
+
+  if (is.null(k.set)) {
+    if (verbose) {
+      cat("Trying to find a proper set of possible number of clusters... ")
+    }
+
+    H <- hclust(D)
+
+    v <- max(c(ceiling(sqrt(n)), 100))
+
+    logprobs <- rep(0, v)
+
+    for (k in 1:v) {
+      logprobs[k] <- GetMaxLogPP(d, cutree(H, k=k), g.prob,
+                                 hyper.par)$max.logpp
+    }
+
+    k.n <- which.max(logprobs)
+
+    k.set <- seq(k.n - 10, k.n + 10, 1)
+    k.set <- k.set[k.set >= 1 & k.set <= n]
+
+    if (verbose) {
+      cat("done.\n")
+    }
+  }
+
+  max.value <- -Inf
+  init.partition <- rep(1, n)
+
+  if (verbose) {
+    cat("Searching the best initial partition... ")
+  }
+
+  for (i in 1:length(k.set)) {
+    partition <- pam(x=D, k=k.set[i], cluster.only=TRUE, do.swap=FALSE)
+    logprob <- GetMaxLogPP(d, partition, g.prob, hyper.par)$max.logpp
+
+    if (logprob > max.value) {
+      max.value <- logprob
+      init.partition <- partition
+    }
+  }
+
+  if (verbose) {
+    cat("done.\n")
+  }
+
+  return(init.partition)
+}

@@ -13,14 +13,18 @@ and columns (statistical variables) of the provided data matrix
 
 To know more about the method and how to properly setup the parameters, please
 read the following paper:
-"Article yet to be published"
+
+Pessia A., Grad Y., Cobey S., Puranen J., Corander J. (2015). _K-Pax2: Bayesian
+identification of cluster-defining amino acid positions in large sequence
+datasets_. MGen 1(1). doi:
+[10.1099/mgen.0.000025](https://dx.doi.org/10.1099/mgen.0.000025)
 
 ## Download
 
 The latest pre-compiled stable version of K-Pax2 can be found at
-the [BSG group website](http://www.helsinki.fi/bsg/software/kpax2/)
+the [BSG group website](http://www.helsinki.fi/bsg/software/kpax2/).
 
-Source code is available on [GitHub](https://github.com/alberto-p/kpax2/)
+Source code is available on [GitHub](https://github.com/alberto-p/kpax2/).
 
 ## Installation
 
@@ -35,10 +39,10 @@ commands with administrative privileges.
 
 Note for Windows users: within R, file paths should be written using the slash
 '/' character instead of the usual backslash '\' character. If you want to use
-the backslash, then you have to escape it first. Examples of valid file paths:
+the backslash, you have to escape it. Examples of valid file paths:
 
-    "C:/Users/Current_User/Downloads/kpax2/kpax2_x.x.x.tar.gz"
-    "C:\\Users\\Current_User\\Downloads\\kpax2\\kpax2_x.x.x.tar.gz"
+    "C:/Users/CurrentUser/Documents/kpax2/kpax2_x.x.x.tar.gz"
+    "C:\\Users\\CurrentUser\\Documents\\kpax2\\kpax2_x.x.x.tar.gz"
 
 ### Default system library
 
@@ -61,7 +65,7 @@ You can now load the package in R using
 ### Custom library
 
 If you want to install the package into a custom library, different from the
-default system one, choose its location and denote by "PathToLibrary" its
+default system one, choose its location and denote with "PathToLibrary" its
 complete path. Open the terminal and issue the command
 
     R CMD INSTALL --library="PathToLibrary" "PathToPackageFile"
