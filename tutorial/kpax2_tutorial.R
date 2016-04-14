@@ -25,7 +25,7 @@
 #
 ###############################################################################
 #
-# Welcome to K-Pax2 tutorial!
+# Welcome to the K-Pax2 tutorial!
 #
 # In this tutorial you will learn how to:
 # - load a multiple sequence alignment (MSA) or a more generic dataset
@@ -42,8 +42,8 @@
 ###############################################################################
 #
 # File paths should be written using the slash '/' character instead of the
-# usual backslash '\' character. If you want to use the backslash, then you
-# have to escape it first (i.e. use '\\'). Examples of valid file paths:
+# usual backslash '\' character. If you want to use the backslash, you have to
+# escape it (i.e. use '\\'). Examples of valid file paths:
 #
 # "C:/Program Files/R/R-3.0.0/bin/R.exe"
 # "C:\\Program Files\\R\\R-3.0.0\\bin\\R.exe"
@@ -111,7 +111,7 @@ miss.char <- c("?", "*", "#", "-", "b", "x", "z")
 
 # It's a good idea to save the converted dataset, so that we won't need to
 # convert it again in a later analysis. This will also save some time when
-# analyzing, in parallel in a cluster environment, a huge dataset.
+# analyzing in parallel, in a cluster environment, a huge dataset.
 
 # IMPORTANT: the default name for the data variable, saved in the output file,
 #            is "full.data". Keep this in mind when writing automated scripts.
@@ -140,34 +140,11 @@ str(full.data)
 #
 # K-Pax2 requires the definition of 3 main input parameters:
 #
-# - an initial starting partition
 # - a vector of prior probabilities for the column classification
 # - an array of parameters for the beta distributions as used by the model
+# - an initial starting partition
 #
 # plus some variables used to customize a K-Pax2 run
-
-# Initial partition
-# The dataset is not very big, so we can start our search by placing each unit
-# into its own cluster. This should make it easier for the algorithm to find
-# the global optimum (or a close solution to it).
-#
-# When clustering thousands of units, this approach is not optimal from a
-# memory point of view. In this case, we could choose a random partition or
-# start already from a reasonable one. For example, we could cut a hierarchical
-# cluster tree.
-#
-# It is also possible to use an external file to define the initial partition.
-# The file must have only one column while the number of rows must be equal to
-# the sample size. Each row 'i' represents the cluster of unit 'i'. Check file
-# 'HIV1_best_partition.csv' to see how to format a partition file.
-#
-# IMPORTANT: For the algorithm is easier to merge clusters rather than
-#            splitting them. It is always a good idea to start from a partition
-#            that has many more clusters than the optimal solution.
-#            This requires some initial guessing, but we can refine it later
-#            after few runs.
-#initial.partition <- "best_partition.csv"
-initial.partition <- 1:200
 
 # Column status prior probabilities
 # This is a non-negative numeric vector of length 3. If it does not sum to 1,
@@ -186,7 +163,7 @@ status.prior.probs <- c(0.6, 0.35, 0.05)
 # it on your own, of course, but it requires some technical knowledge about the
 # R package code and a good understanding of the model.
 # There is a function that will setup a proper array for you, using the default
-# approach explained in the paper. This also has  proven to work well for many
+# approach explained in the paper. This also has proven to work well for many
 # different datasets.
 beta.hyper.par <- InitHyperParameters(n=200,
                                       n1s=apply(full.data$data, 2, sum),
@@ -196,16 +173,42 @@ beta.hyper.par <- InitHyperParameters(n=200,
 # read the paper (and the help file)
 ?InitHyperParameters
 
+# Initial partition
+# The dataset is not very big, so we could start our search by placing each
+# unit into its own cluster:
+#
+# initial.partition <- 1:nrow(full.data$data)
+#
+# It is also possible to use an external file to define the initial partition.
+# The file must have only one column while the number of rows must be equal to
+# the sample size. Each row 'i' represents the cluster of unit 'i'. Check file
+# 'HIV1_best_partition.csv' to see how to format a partition file.
+#
+# initial.partition <- "HIV1_best_partition.csv"
+#
+# When clustering thousands of units, we should start from a reasonable
+# partition. For example, we could cut a dendrogram obtained through
+# hierarchical clustering. This is what FindInitialPartition does.
+#
+initial.partition <- FindInitialPartition(full.data$data, status.prior.probs,
+                                          beta.hyper.par, verbose=TRUE)
+#
+# IMPORTANT: For the algorithm is easier to merge clusters rather than
+#            splitting them. It is always a good idea to start from a partition
+#            that has many more clusters than the optimal solution.
+#            This requires some initial guessing, but it is always possible to
+#            refine it after few runs.
+
 # When analyzing a dataset made of thousands of units, memory allocation
 # becomes an extremely important factor. We could try to save some memory by
 # fixing in advance a maximum number of clusters we are (almost) sure we will
 # never reach.
 # Note that if the optimal partition has more than this maximum number of
 # clusters, the algorithm will automatically allocate more memory on the fly.
-# Memory allocation at running time is a very expensive operation, so don't
-# define this variable to a small number
+# Memory allocation at runtime is a very expensive operation, so don't set
+# this variable to a small number
 # If memory allocation is not an issue, we can just set this variable to n
-max.K <- 200
+max.K <- nrow(full.data$data)
 
 # Print a status message every 50 iterations
 iter.print <- 50

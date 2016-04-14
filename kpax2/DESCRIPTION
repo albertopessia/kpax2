@@ -1,12 +1,13 @@
 Package: kpax2
-Version: 0.9.1
-Date: 2014-11-07
+Version: 1.0.0
+Date: 2016-03-26
 Title: Bayesian Cluster Analysis of Categorical Data
 Author: Alberto Pessia
 Maintainer: Alberto Pessia <alberto.pessia@gmail.com>
 Depends: R (>= 2.15.0)
+Imports: cluster
 Description: Bayesian model-based unsupervised clustering method, for
              simultaneous classification of rows and columns of a categorical
-             data matrix
+             data matrix.
 License: GPL (>=3)
 URL: http://www.helsinki.fi/bsg/software/kpax2/
