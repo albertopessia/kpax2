@@ -165,7 +165,7 @@ status.prior.probs <- c(0.6, 0.35, 0.05)
 # There is a function that will setup a proper array for you, using the default
 # approach explained in the paper. This also has proven to work well for many
 # different datasets.
-beta.hyper.par <- InitHyperParameters(n=200,
+beta.hyper.par <- InitHyperParameters(n=nrow(full.data$data),
                                       n1s=apply(full.data$data, 2, sum),
                                       r=(log(0.001) / log(0.95)))
 

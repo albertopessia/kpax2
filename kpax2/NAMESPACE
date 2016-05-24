@@ -1,4 +1,6 @@
 importFrom(cluster, pam)
+importFrom(stats, cutree, dbinom, dist, hclust, rbeta, rbinom, rgamma, runif)
+importFrom(utils, read.table, write.table)
 
 export(FindInitialPartition, GetMaxLogPP, InitHyperParameters, Kpax2, LoadData,
        SaveResults, SimulateDataset, SaveSimulatedDataset)
