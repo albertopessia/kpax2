@@ -4,7 +4,8 @@
 \title{K-Pax2 Input Tool Facility}
 \description{Read data in FASTA or CSV format and convert it to K-Pax2 format}
 
-\usage{LoadData(input.file, output.file=NULL, filetype="fasta", header=FALSE, ids=FALSE, miss=NULL, lines.to.read=-1)}
+\usage{LoadData(input.file, output.file=NULL, filetype="fasta", header=FALSE,
+                ids=FALSE, miss=NULL, lines.to.read=-1)}
 
 \arguments{
     \item{input.file}{path to input data file}

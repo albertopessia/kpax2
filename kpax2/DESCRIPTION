@@ -1,6 +1,6 @@
 Package: kpax2
-Version: 1.0.0
-Date: 2016-03-26
+Version: 1.0.1
+Date: 2016-05-24
 Title: Bayesian Cluster Analysis of Categorical Data
 Author: Alberto Pessia
 Maintainer: Alberto Pessia <alberto.pessia@gmail.com>
