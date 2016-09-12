@@ -19,19 +19,26 @@ identification of cluster-defining amino acid positions in large sequence
 datasets_. MGen 1(1). doi:
 [10.1099/mgen.0.000025](https://dx.doi.org/10.1099/mgen.0.000025)
 
-## Download
-
-The latest pre-compiled stable version of K-Pax2 can be found at
-the [BSG group website](http://www.helsinki.fi/bsg/software/kpax2/).
-
-Source code is available on [GitHub](https://github.com/alberto-p/kpax2/).
+Visit also the [BSG group website](http://www.helsinki.fi/bsg/) for other
+interesting projects.
 
 ## Installation
 
-Either download the pre-compiled stable version zip file (in which case,
-extract its content into a folder of your choice) or build your own version
-from the source code. Let "PathToPackageFile" denote the complete path to
-the package file (having extension .tar.gz).
+### devtools
+
+The easiest way to install K-Pax2 is using
+[devtools](https://github.com/hadley/devtools):
+
+    devtools::install_github("alberto-p/kpax2/kpax2")
+    library(kpax2)
+
+### Standard approach
+
+Download the latest version of K-Pax2 from the
+[releases page](https://github.com/alberto-p/kpax2/releases) and extract the
+content of the compressed file into a folder of your choice. Let
+"PathToPackageFile" denote the complete path to the package file (having
+extension .tar.gz).
 
 Decide if the package should be made available only to the current user or
 to every user on the same machine. In the latter case, run all the following
@@ -44,7 +51,7 @@ the backslash, you have to escape it. Examples of valid file paths:
     "C:/Users/CurrentUser/Documents/kpax2/kpax2_x.x.x.tar.gz"
     "C:\\Users\\CurrentUser\\Documents\\kpax2\\kpax2_x.x.x.tar.gz"
 
-### Default system library
+#### Default system library
 
 If you want to install the package into the default system library, run R and
 type the command
@@ -62,7 +69,7 @@ You can now load the package in R using
 
     library(kpax2)
 
-### Custom library
+#### Custom library
 
 If you want to install the package into a custom library, different from the
 default system one, choose its location and denote with "PathToLibrary" its
