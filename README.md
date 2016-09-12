@@ -1,5 +1,13 @@
 # K-Pax2 - Bayesian Cluster Analysis of Categorical Data
 
+### Note: development of this package is now discontinued.
+
+K-Pax2 has been superseded by
+[Kpax3.jl](https://github.com/alberto-p/Kpax3.jl), a package for the Julia
+programming language. Kpax3.jl provides the same functionalities of
+K-Pax2 but in a faster and better way. It also add a MCMC algorithm for a
+proper Bayesian analysis. Check it out!
+
 ## About
 
 K-Pax2 is a R package, written with the purpose of clustering (big) datasets
