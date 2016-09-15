@@ -3,7 +3,7 @@
 ### Note: development of this package is now discontinued.
 
 K-Pax2 has been superseded by
-[Kpax3.jl](https://github.com/alberto-p/Kpax3.jl), a package for the Julia
+[Kpax3.jl](https://github.com/albertopessia/Kpax3.jl), a package for the Julia
 programming language. Kpax3.jl provides the same functionalities of
 K-Pax2 but in a faster and better way. It also add a MCMC algorithm for a
 proper Bayesian analysis. Check it out!
@@ -37,13 +37,13 @@ interesting projects.
 The easiest way to install K-Pax2 is using
 [devtools](https://github.com/hadley/devtools):
 
-    devtools::install_github("alberto-p/kpax2/kpax2")
+    devtools::install_github("albertopessia/kpax2/kpax2")
     library(kpax2)
 
 ### Standard approach
 
 Download the latest version of K-Pax2 from the
-[releases page](https://github.com/alberto-p/kpax2/releases) and extract the
+[releases page](https://github.com/albertopessia/kpax2/releases) and extract the
 content of the compressed file into a folder of your choice. Let
 "PathToPackageFile" denote the complete path to the package file (having
 extension .tar.gz).
