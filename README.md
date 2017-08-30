@@ -2,11 +2,11 @@
 
 ### Note: development of this package is now discontinued.
 
-K-Pax2 has been superseded by
-[Kpax3.jl](https://github.com/albertopessia/Kpax3.jl), a package for the Julia
-programming language. Kpax3.jl provides the same functionalities of
-K-Pax2 but in a faster and better way. It also add a MCMC algorithm for a
-proper Bayesian analysis. Check it out!
+K-Pax2 has been superseded by [Kpax3.jl](https://github.com/albertopessia/Kpax3.jl),
+a package for the Julia programming language (that can be used with R through
+[RJulia](https://github.com/armgong/RJulia)). Kpax3.jl provides the same
+functionalities of K-Pax2 but in a faster and better way. It also add a MCMC
+algorithm for a proper Bayesian analysis. Check it out!
 
 ## About
 
